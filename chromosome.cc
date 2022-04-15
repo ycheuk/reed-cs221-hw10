@@ -92,7 +92,13 @@ Chromosome::get_fitness() const
 bool
 Chromosome::is_valid() const
 {
-  // Add your implementation here
+  const auto len = order_.size();
+
+  for (auto v : order_){
+    if (v > len){
+      return false;
+    }
+  }
 }
 
 // Find whether a certain value appears in a given range of the chromosome.
