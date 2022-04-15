@@ -84,6 +84,9 @@ Chromosome::create_crossover_child(const Chromosome* p1, const Chromosome* p2,
 double
 Chromosome::get_fitness() const
 {
+  int sumNum = 0;
+
+  if()
   // Add your implementation here
 }
 
@@ -98,13 +101,13 @@ Chromosome::is_valid() const
     if (v > len){
       return false;
     }
-    for(auto elem : order_) {
+    for (auto elem : order_){
       int elem_count = 0;
-      if(v == elem) {
+      if (v == elem) {
         elem_count++;
       }
     }
-    if(elem_count != 1) {
+    if (elem_count != 1){
       return false;
     }
   }
