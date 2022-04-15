@@ -98,6 +98,15 @@ Chromosome::is_valid() const
     if (v > len){
       return false;
     }
+    for(auto elem : order_) {
+      int elem_count = 0;
+      if(v == elem) {
+        elem_count++;
+      }
+    }
+    if(elem_count != 1) {
+      return false;
+    }
   }
 }
 
