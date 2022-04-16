@@ -93,8 +93,6 @@ bool
 Chromosome::is_valid() const
 {
   /*
-  Shorter (but idk if it works) so I'm commenting this out:
-
   for (int i = 0; i < order_.size(); i++){
     if (this->is_in_range(order_.begin(), order_.end(), i)){
     } else {
