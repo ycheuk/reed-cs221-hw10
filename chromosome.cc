@@ -30,7 +30,9 @@ Chromosome::~Chromosome()
 void
 Chromosome::mutate()
 {
-  // Add your implementation here
+  // Defines range
+  std::uniform_int_distribution<int> dist(0, order_.size() - 1);
+  std::swap(order_[dist(generator_)}], order_[dist(generator_)]);
 
   assert(is_valid());
 }
