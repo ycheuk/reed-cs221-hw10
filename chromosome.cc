@@ -84,9 +84,6 @@ Chromosome::create_crossover_child(const Chromosome* p1, const Chromosome* p2,
 double
 Chromosome::get_fitness() const
 {
-  int sumNum = 0;
-
-  if()
   // Add your implementation here
 }
 
