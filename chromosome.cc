@@ -97,7 +97,8 @@ Chromosome::is_valid() const
   /*
   for (int i = 0; i < order_.size(); i++){
     if (this->is_in_range(order_.begin(), order_.end(), i)){
-    } else {
+    }
+    else {
       return false;
     }
   }
@@ -129,5 +130,10 @@ Chromosome::is_valid() const
 bool
 Chromosome::is_in_range(unsigned value, unsigned begin, unsigned end) const
 {
-  // Add your implementation here
+  if (std::find(order_[begin], order_[end], i)){
+    return true;
+  }
+  else {
+    return false;
+  }
 }
