@@ -10,7 +10,7 @@ By [Vaughn Zaayer](https://github.com/vaughnzaayer) and [Yik Yin Cheuk](https://
 - *Looks for a mere half a second*
 - "Well, your code is about 15 lines too long." - Eitan
 ### get_fitness()
-- Used the `calculate_total_distance()` method from chromosome.hh, which uses the `total_path_distance()` method from the Cities class.
+- Used the `calculate_total_distance()` method from the Chromosome class, which uses the `total_path_distance()` method from the Cities class.
 ### Constructor and Destructor
 - No changes were made thus far...
 ### mutate()
