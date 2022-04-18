@@ -13,6 +13,7 @@
 Chromosome::Chromosome(const Cities* cities_ptr)
   : cities_ptr_(cities_ptr),
     order_(random_permutation(cities_ptr->size())),
+    original_order_distance_(calculate_total_distance(order_)),
     generator_(rand())
 {
   assert(is_valid());
@@ -32,7 +33,7 @@ Chromosome::mutate()
 {
   // Defines range
   std::uniform_int_distribution<int> dist(0, order_.size() - 1);
-  std::swap(order_[dist(generator_)}], order_[dist(generator_)]);
+  std::swap(order_[dist(generator_)], order_[dist(generator_)]);
 
   assert(is_valid());
 }
@@ -43,9 +44,6 @@ Chromosome::mutate()
 std::pair<Chromosome*, Chromosome*>
 Chromosome::recombine(const Chromosome* other)
 {
-  assert(is_valid());
-  assert(other->is_valid());
-
   // Add your implementation here
 }
 
@@ -86,7 +84,8 @@ Chromosome::create_crossover_child(const Chromosome* p1, const Chromosome* p2,
 double
 Chromosome::get_fitness() const
 {
-  return 1 / (1 + f());
+  // Fitness is determined by how much shorter the current path is than the original path
+
 }
 
 // A chromsome is valid if it has no repeated values in its permutation,
@@ -94,34 +93,15 @@ Chromosome::get_fitness() const
 bool
 Chromosome::is_valid() const
 {
-  /*
-  for (int i = 0; i < order_.size(); i++){
-    if (this->is_in_range(order_.begin(), order_.end(), i)){
-    }
-    else {
+
+  for (auto i : order_) {
+    if(std::count(order_.begin(), order_.end(), i) != 1) {
       return false;
     }
   }
+
   return true;
-  }
-  */
 
-  const auto len = order_.size();
-
-  for (auto v : order_){
-    if (v > len){
-      return false;
-    }
-    for (auto elem : order_){
-      int elem_count = 0;
-      if (v == elem) {
-        elem_count++;
-      }
-    }
-    if (elem_count != 1){
-      return false;
-    }
-  }
 }
 
 // Find whether a certain value appears in a given range of the chromosome.
@@ -130,7 +110,7 @@ Chromosome::is_valid() const
 bool
 Chromosome::is_in_range(unsigned value, unsigned begin, unsigned end) const
 {
-  if (std::find(order_[begin], order_[end], i)){
+  if (std::find(order_[begin], order_[end], value)){
     return true;
   }
   else {
