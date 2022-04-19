@@ -61,6 +61,8 @@ class Chromosome {
     return order_;
   }
 
+  // Return an immutable reference to 
+
  protected:
   // For an ordered set of parents, return a child using the ordered crossover.
   // The child will have the same values as p1 in the range [begin,end),

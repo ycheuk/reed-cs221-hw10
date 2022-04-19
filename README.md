@@ -12,6 +12,6 @@ By [Vaughn Zaayer](https://github.com/vaughnzaayer) and [Yik Yin Cheuk](https://
 ### get_fitness()
 - Used the `calculate_total_distance()` method from the Chromosome class, which uses the `total_path_distance()` method from the Cities class.
 ### Constructor and Destructor
-- Consturctor now saves the distance of the originally created path to measure fitness of future classes - Vaughn
+- No changes were made thus far...
 ### mutate()
 ### recombine()

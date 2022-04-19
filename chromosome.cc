@@ -13,7 +13,7 @@
 Chromosome::Chromosome(const Cities* cities_ptr)
   : cities_ptr_(cities_ptr),
     order_(random_permutation(cities_ptr->size())),
-    original_order_distance_(calculate_total_distance(order_)),
+    original_order_length_(calculate_total_distance()),
     generator_(rand())
 {
   assert(is_valid());
@@ -86,6 +86,16 @@ Chromosome::get_fitness() const
 {
   // Fitness is determined by how much shorter the current path is than the original path
 
+  static double current_path_length = calculate_total_distance();
+
+  // If the new path is longer than the original path, fitness will be zero
+  if(original_order_length_ - current_path_length <= 0) {
+    return 0;
+  }
+
+  double difference = (1 - (current_path_length / original_order_length_)) * 10;
+  return difference;
+
 }
 
 // A chromsome is valid if it has no repeated values in its permutation,
@@ -110,7 +120,7 @@ Chromosome::is_valid() const
 bool
 Chromosome::is_in_range(unsigned value, unsigned begin, unsigned end) const
 {
-  if (std::find(order_[begin], order_[end], value)){
+  if (std::find(order_.cbegin(), order_.cend(), value) != order_.cend()){
     return true;
   }
   else {
