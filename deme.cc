@@ -16,7 +16,9 @@ Deme::Deme(const Cities* cities_ptr, unsigned pop_size, double mut_rate)
 // Clean up as necessary
 Deme::~Deme()
 {
-  // Add your implementation here
+  for (auto c : pop_){
+    delete c;
+  }
 }
 
 // Evolve a single generation of new chromosomes, as follows:
@@ -28,18 +30,48 @@ Deme::~Deme()
 // After we've generated pop_size new chromosomes, we delete all the old ones.
 void Deme::compute_next_generation()
 {
-  // Add your implementation here
+  auto newPop = pop_;
+  
+  for (unsigned 1 = 0; i < pop_.size();){
+    auto parent1 = select_parent();
+    auto parent2 = select_parent();
+    
+    static std::uniform_real_distribution<double> dist(0.0, 1.0);
+    if (dist(generator_) <= mut_rate_) {
+      parent1->mutate();
+    }
+    if (dist(generator_) <= mut_rate_) {
+      parent2->mutate();
+    }
+    
+    auto offspring = parent1->recombin(parent2);
+    newPop.push_back(offspring.first);
+    newPop.push_back(offspring.second);
+    
+    i++;
+  }
+  for (auto c : pop_) {
+    delete c;
+  }
+  std::swap(pop_, newPop);
 }
 
 // Return a copy of the chromosome with the highest fitness.
 const Chromosome* Deme::get_best() const
 {
-  // Add your implementation here
+  assert(pop_.size());
+  Chromosome* theBest = pop_[0];
+  for (auto cp1 : pop_){
+    if (cp1->get_fitness() > best->get_fitness(){
+      theBest = cp1;
+    }
+  }
+  return theBest;
 }
 
 // Randomly select a chromosome in the population based on fitness and
 // return a pointer to that chromosome.
 Chromosome* Deme::select_parent()
 {
-  // Add your implementation here
+  static std::uniform_real_distribution<double> dist(0.0, 1);
 }
