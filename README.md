@@ -18,3 +18,14 @@ By [Vaughn Zaayer](https://github.com/vaughnzaayer) and [Yik Yin Cheuk](https://
 - Firstly, run through the is_valid() method.
 - We included size() since the create_crossover_child method takes index1 and index2.
 - Pick 2 random indexs, make the children, and return the children!
+## deme.hh
+- No changes were made thus far...
+## deme.cc
+### Constructor and Destructor
+- No changes were made thus far...
+### get_best()
+- 
+### select_parent()
+- 
+### compute_next_generation()
+- 
