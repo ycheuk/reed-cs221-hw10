@@ -44,7 +44,23 @@ Chromosome::mutate()
 std::pair<Chromosome*, Chromosome*>
 Chromosome::recombine(const Chromosome* other)
 {
-  // Add your implementation here
+  assert(is_valid());
+  assert(other->is_valid());
+  
+  // Include size():
+  std::uniform_int_distribution<int> dist(0, order_.size());
+  
+  // Pick 2 random indexes:
+  // Sorry I'm bad at naming variables lol, English isn't my first language
+  auto some1 = dist(generator_);
+  auto some2 = dist(generator_);
+  auto [index1, index2] = std::minmax(some1, some2);
+  
+  // Make the CHILDREN:
+  auto child1 = create_crossover_child(this, other, index1, index2);
+  auto child2 = create_crossover_child(this, other, index1, index2);
+  
+  return std::make_pair(child1, child2);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -85,6 +101,11 @@ double
 Chromosome::get_fitness() const
 {
   // Fitness is determined by how much shorter the current path is than the original path
+  
+  /*
+  // I think this SHOULD be correct, from what Eitan said in lecture on Wednesday, but I'll let you decide :)
+  return 1.0 / (1 + calculate_total_distance());
+  */
 
   static double current_path_length = calculate_total_distance();
 
