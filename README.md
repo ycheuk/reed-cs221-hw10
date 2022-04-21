@@ -15,3 +15,6 @@ By [Vaughn Zaayer](https://github.com/vaughnzaayer) and [Yik Yin Cheuk](https://
 - No changes were made thus far...
 ### mutate()
 ### recombine()
+- Firstly, run through the is_valid() method.
+- We included size() since the create_crossover_child method takes index1 and index2.
+- Pick 2 random indexs, make the children, and return the children!
