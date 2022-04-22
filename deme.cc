@@ -50,7 +50,7 @@ void Deme::compute_next_generation()
       parent2->mutate();
     }
 
-    auto offspring = parent1->recombin(parent2);
+    auto offspring = parent1->recombine(parent2);
     newPop.push_back(offspring.first);
     newPop.push_back(offspring.second);
 
