@@ -17,6 +17,7 @@ Deme::Deme(const Cities* cities_ptr, unsigned pop_size, double mut_rate)
     i++;
   }
   //Some more code here but idk how to do the end part to this code...
+  mut_rate_ = mut_rate;
 }
 
 // Clean up as necessary
@@ -38,7 +39,7 @@ void Deme::compute_next_generation()
 {
   auto newPop = pop_;
 
-  for (unsigned 1 = 0; i < pop_.size()/2;){
+  for (unsigned i = 0; i < pop_.size()/2;){
     auto parent1 = select_parent();
     auto parent2 = select_parent();
 
@@ -68,7 +69,7 @@ const Chromosome* Deme::get_best() const
   assert(pop_.size()); // If there are no elements, returns an error
   Chromosome* theBest = pop_[0];
   for (auto c1 : pop_){
-    if (c1->get_fitness() > best->get_fitness(){
+    if (c1->get_fitness() > theBest->get_fitness()){
       theBest = c1;
     }
   }
@@ -91,10 +92,10 @@ Chromosome* Deme::select_parent()
   double fitSum = 0; // Total fitness
 
   const auto chromy = std::find_if(pop_.cbegin(),pop_.cend(),[&](auto c){
-    fitnessSum += c->get_fitness();
+    fitSum += c->get_fitness();
     return fitSum >= threshold;
   });
-  assert(it != pop_.cend());
+  // assert(it != pop_.cend());
 
   return *chromy;
 }

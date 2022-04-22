@@ -102,20 +102,20 @@ Chromosome::get_fitness() const
 {
   // Fitness is determined by how much shorter the current path is than the original path
   
-  /*
+  
   // I think this SHOULD be correct, from what Eitan said in lecture on Wednesday, but I'll let you decide :)
-  return 1.0 / (1 + calculate_total_distance());
-  */
+  return (1.0 / (1 + calculate_total_distance()) * 100);
+  
 
-  static double current_path_length = calculate_total_distance();
+  // static double current_path_length = calculate_total_distance();
 
-  // If the new path is longer than the original path, fitness will be zero
-  if(original_order_length_ - current_path_length <= 0) {
-    return 0;
-  }
+  // // If the new path is longer than the original path, fitness will be zero
+  // if(original_order_length_ - current_path_length <= 0) {
+  //   return 0;
+  // }
 
-  double difference = (1 - (current_path_length / original_order_length_)) * 10;
-  return difference;
+  // double difference = (1 - (current_path_length / original_order_length_)) * 10;
+  // return difference;
 
 }
 

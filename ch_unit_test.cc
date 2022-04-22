@@ -11,7 +11,7 @@
 Cities* gen_random_cities() {
 	std::vector<std::pair<int, int>> city_list;
 	Cities::coord_t city;
-	for(int i; i < 20; i++){
+	for(int i = 0; i < 20; i++){
 		city.first = std::rand() % 100;
 		city.second = std::rand() % 100;
 		city_list.push_back(city);
@@ -68,6 +68,14 @@ int main() {
 	test_chromosome1 -> mutate();
 	print_chromosome_ordering(*test_chromosome1);
 	std::cout << "FITNESS RATING: " << test_chromosome1 -> get_fitness() << std::endl;
+
+	// Perform crossover test
+	std::pair test_children = test_chromosome1 -> recombine(test_chromosome2);
+	print_chromosome_ordering(*test_children.first);
+	print_chromosome_ordering(*test_children.second);
+	std::cout << "FITNESS RATING: " << test_children.first -> get_fitness() << std::endl;
+	std::cout << "FITNESS RATING: " << test_children.second -> get_fitness() << std::endl;
+
 
 
 	return 0;
