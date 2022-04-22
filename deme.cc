@@ -40,9 +40,10 @@ Deme::~Deme()
 // After we've generated pop_size new chromosomes, we delete all the old ones.
 void Deme::compute_next_generation()
 {
-  auto newPop = pop_;
+  std::vector<Chromosome*> newPop;
+  newPop.reserve(pop_.size());
 
-  for (unsigned i = 0; i < pop_.size()/2;){
+  for (unsigned i = 0; i < pop_.size()/2; i++){
     auto parent1 = select_parent();
     auto parent2 = select_parent();
 
@@ -58,16 +59,15 @@ void Deme::compute_next_generation()
     newPop.push_back(offspring.first);
     newPop.push_back(offspring.second);
 
-    i++;
+  
 
-
-  for(auto c : newPop) {
+  }
+  
+  for(auto c : pop_) {
     delete c;
   }
 
   std::swap(pop_, newPop);
-
-  }
 }
 
 // Return a copy of the chromosome with the highest fitness.
