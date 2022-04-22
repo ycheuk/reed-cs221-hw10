@@ -16,7 +16,7 @@ By [Vaughn Zaayer](https://github.com/vaughnzaayer) and [Yik Yin Cheuk](https://
 ### mutate()
 - We firstly define the range, and then run through the `is_valid()` method.
 ### recombine()
-- Firstly, run through the is_valid() method.
+- Firstly, run through the `is_valid()` method.
 - We included `size()` since the `create_crossover_child()` method takes index1 and index2.
 - Pick 2 random indexs, make the children, and return the children!
 ## deme.hh
