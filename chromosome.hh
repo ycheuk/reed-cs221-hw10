@@ -91,4 +91,4 @@ class Chromosome {
 
   std::default_random_engine generator_; // A random number generator for the various methods
 
-};
+}; 
