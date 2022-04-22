@@ -6,6 +6,9 @@
 #include "chromosome.hh"
 #include "deme.hh"
 
+#include <cassert>
+#include <algorithm>
+
 // Generate a Deme of the specified size with all-random chromosomes.
 // Also receives a mutation rate in the range [0-1].
 Deme::Deme(const Cities* cities_ptr, unsigned pop_size, double mut_rate)
@@ -56,11 +59,15 @@ void Deme::compute_next_generation()
     newPop.push_back(offspring.second);
 
     i++;
-  }
-  for (auto c : pop_) {
+
+
+  for(auto c : newPop) {
     delete c;
   }
+
   std::swap(pop_, newPop);
+
+  }
 }
 
 // Return a copy of the chromosome with the highest fitness.
@@ -68,7 +75,9 @@ const Chromosome* Deme::get_best() const
 {
   assert(pop_.size()); // If there are no elements, returns an error
   Chromosome* theBest = pop_[0];
+  assert(theBest != nullptr);
   for (auto c1 : pop_){
+    assert(c1 != nullptr);
     if (c1->get_fitness() > theBest->get_fitness()){
       theBest = c1;
     }
