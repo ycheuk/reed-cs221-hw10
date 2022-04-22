@@ -38,7 +38,7 @@ void Deme::compute_next_generation()
 {
   auto newPop = pop_;
 
-  for (unsigned 1 = 0; i < pop_.size();){
+  for (unsigned 1 = 0; i < pop_.size()/2;){
     auto parent1 = select_parent();
     auto parent2 = select_parent();
 
