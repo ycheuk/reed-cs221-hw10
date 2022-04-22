@@ -14,9 +14,10 @@ By [Vaughn Zaayer](https://github.com/vaughnzaayer) and [Yik Yin Cheuk](https://
 ### Constructor and Destructor
 - No changes were made thus far...
 ### mutate()
+- We firstly define the range, and then run through the `is_valid()` method.
 ### recombine()
 - Firstly, run through the is_valid() method.
-- We included size() since the create_crossover_child method takes index1 and index2.
+- We included `size()` since the `create_crossover_child()` method takes index1 and index2.
 - Pick 2 random indexs, make the children, and return the children!
 ## deme.hh
 - No changes were made thus far...
@@ -26,6 +27,8 @@ By [Vaughn Zaayer](https://github.com/vaughnzaayer) and [Yik Yin Cheuk](https://
 ### get_best()
 - 
 ### select_parent()
-- 
+- Firstly, we calculated the total sum of fitness in pop_ using lambda. 
+- We then picked a random fitness sum value. 
+- Lastly, we find the first chromosome whose sum exeeds the threshold. 
 ### compute_next_generation()
 - 
