@@ -58,7 +58,7 @@ Chromosome::recombine(const Chromosome* other)
   
   // Make the CHILDREN:
   auto child1 = create_crossover_child(this, other, index1, index2);
-  auto child2 = create_crossover_child(this, other, index1, index2);
+  auto child2 = create_crossover_child(other, this, index1, index2);
   
   return std::make_pair(child1, child2);
 }
@@ -141,10 +141,9 @@ Chromosome::is_valid() const
 bool
 Chromosome::is_in_range(unsigned value, unsigned begin, unsigned end) const
 {
-  if (std::find(order_.cbegin(), order_.cend(), value) != order_.cend()){
-    return true;
-  }
-  else {
+  auto location = std::find(&order_[begin], &order_[end], value);
+  if (location == &order_[end]){
     return false;
   }
+  return true;
 }
