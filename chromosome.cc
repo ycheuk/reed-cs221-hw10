@@ -13,7 +13,6 @@
 Chromosome::Chromosome(const Cities* cities_ptr)
   : cities_ptr_(cities_ptr),
     order_(random_permutation(cities_ptr->size())),
-    original_order_length_(calculate_total_distance()),
     generator_(rand())
 {
   assert(is_valid());
