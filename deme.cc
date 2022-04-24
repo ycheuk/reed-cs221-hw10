@@ -12,6 +12,7 @@
 // Generate a Deme of the specified size with all-random chromosomes.
 // Also receives a mutation rate in the range [0-1].
 Deme::Deme(const Cities* cities_ptr, unsigned pop_size, double mut_rate)
+  : mut_rate_(mut_rate)
 {
   uint i = 0;
   while (i < pop_size){
@@ -19,8 +20,6 @@ Deme::Deme(const Cities* cities_ptr, unsigned pop_size, double mut_rate)
     pop_.push_back(c);
     i++;
   }
-  //Some more code here but idk how to do the end part to this code...
-  mut_rate_ = mut_rate;
 }
 
 // Clean up as necessary
@@ -59,8 +58,6 @@ void Deme::compute_next_generation()
     newPop.push_back(offspring.first);
     newPop.push_back(offspring.second);
 
-  
-
   }
   
   for(auto c : pop_) {
@@ -74,9 +71,10 @@ void Deme::compute_next_generation()
 const Chromosome* Deme::get_best() const
 {
   assert(pop_.size()); // If there are no elements, returns an error
-  Chromosome* theBest = pop_[0];
+  Chromosome* theBest = pop_[0]; // By default, theBest is initialized to the first elem in pop_
   assert(theBest != nullptr);
   for (auto c1 : pop_){
+    // If the chromosome fitness is better than the current best, replace theBest
     assert(c1 != nullptr);
     if (c1->get_fitness() > theBest->get_fitness()){
       theBest = c1;
@@ -104,7 +102,6 @@ Chromosome* Deme::select_parent()
     fitSum += c->get_fitness();
     return fitSum >= threshold;
   });
-  // assert(it != pop_.cend());
 
   return *chromy;
 }

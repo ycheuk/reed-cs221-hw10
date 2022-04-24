@@ -99,23 +99,9 @@ Chromosome::create_crossover_child(const Chromosome* p1, const Chromosome* p2,
 double
 Chromosome::get_fitness() const
 {
-  // Fitness is determined by how much shorter the current path is than the original path
-  
-  
-  // I think this SHOULD be correct, from what Eitan said in lecture on Wednesday, but I'll let you decide :)
-  return (1.0 / (1 + calculate_total_distance()) * 100);
-  
 
-  // static double current_path_length = calculate_total_distance();
-
-  // // If the new path is longer than the original path, fitness will be zero
-  // if(original_order_length_ - current_path_length <= 0) {
-  //   return 0;
-  // }
-
-  // double difference = (1 - (current_path_length / original_order_length_)) * 10;
-  // return difference;
-
+  // The longer the path distance becomes, the greater the return value
+  return ((1.0 / (1 + calculate_total_distance())) * 100);
 }
 
 // A chromsome is valid if it has no repeated values in its permutation,
@@ -124,7 +110,8 @@ bool
 Chromosome::is_valid() const
 {
 
-  for (auto i : order_) {
+  for (auto i : order_) {     // Check every city in the order vector 
+                              // there should be only one of each element from 0 to order length - 1
     if(std::count(order_.begin(), order_.end(), i) != 1) {
       return false;
     }
@@ -140,8 +127,10 @@ Chromosome::is_valid() const
 bool
 Chromosome::is_in_range(unsigned value, unsigned begin, unsigned end) const
 {
+  // use std::find to detect if a value is present in a segment of a vector
   auto location = std::find(&order_[begin], &order_[end], value);
-  if (location == &order_[end]){
+  if (location == &order_[end]){  // If std::find returns a reference to the end of the vector,
+                                  // the value is not present
     return false;
   }
   return true;
