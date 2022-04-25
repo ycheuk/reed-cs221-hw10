@@ -25,10 +25,15 @@ By [Vaughn Zaayer](https://github.com/vaughnzaayer) and [Yik Yin Cheuk](https://
 ### Constructor and Destructor
 - No changes were made thus far...
 ### get_best()
-- 
+- First checks if there are elements, if not, returns an error. 
+- Uses a for loop to find the chromosome with the highest fitness by using the `get_fitness()` method.
 ### select_parent()
 - Firstly, we calculated the total sum of fitness in pop_ using lambda. 
 - We then picked a random fitness sum value. 
 - Lastly, we find the first chromosome whose sum exeeds the threshold. 
 ### compute_next_generation()
-- 
+- Uses a for loop to do the main calculation. 
+- Two chromosomes is randomly selected, with probability `mut_rate`, then mutated using the `mutate()` method. 
+- Then, the pair is recombined using the `recombine()` method. 
+- The second for loop deletes the old population. 
+- Finally, swaps with the `newPop`.
