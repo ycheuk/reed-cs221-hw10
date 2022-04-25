@@ -9,6 +9,8 @@ By [Vaughn Zaayer](https://github.com/vaughnzaayer) and [Yik Yin Cheuk](https://
 - "Hey Eitan, can you look at this for us?" - Vaughn
 - *Looks for a mere half a second*
 - "Well, your code is about 15 lines too long." - Eitan
+- We shortened the code, hopefully, to Eitan's expectations lol. 
+- Uses a for loop to check every city in the order vector. 
 ### get_fitness()
 - Used the `calculate_total_distance()` method from the Chromosome class, which uses the `total_path_distance()` method from the Cities class.
 ### Constructor and Destructor
